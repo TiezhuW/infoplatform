@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.john.repository.HouseRepository">
+    <select id="findByCityDistrictDefault" resultType="House">
+        select * from house
+        <where>
+            city = #{city}
+            and district = #{district}
+            <if test="minArea != null">
+                and area &gt;= #{minArea}
+            </if>
+            <if test="maxArea != null">
+                and area &lt;= #{maxArea}
+            </if>
+            <if test="minPrice != null">
+                and price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                and price &lt;= #{maxPrice}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByCityDistrictAreaAsc" resultType="House">
+        select * from house
+        <where>
+            city = #{city}
+            and district = #{district}
+            <if test="minArea != null">
+                and area &gt;= #{minArea}
+            </if>
+            <if test="maxArea != null">
+                and area &lt;= #{maxArea}
+            </if>
+            <if test="minPrice != null">
+                and price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                and price &lt;= #{maxPrice}
+            </if>
+        </where>
+        order by area
+    </select>
+
+    <select id="findByCityDistrictAreaDesc" resultType="House">
+        select * from house
+        <where>
+            city = #{city}
+            and district = #{district}
+            <if test="minArea != null">
+                and area &gt;= #{minArea}
+            </if>
+            <if test="maxArea != null">
+                and area &lt;= #{maxArea}
+            </if>
+            <if test="minPrice != null">
+                and price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                and price &lt;= #{maxPrice}
+            </if>
+        </where>
+        order by area desc
+    </select>
+
+    <select id="findByCityDistrictPriceAsc" resultType="House">
+        select * from house
+        <where>
+            city = #{city}
+            and district = #{district}
+            <if test="minArea != null">
+                and area &gt;= #{minArea}
+            </if>
+            <if test="maxArea != null">
+                and area &lt;= #{maxArea}
+            </if>
+            <if test="minPrice != null">
+                and price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                and price &lt;= #{maxPrice}
+            </if>
+        </where>
+        order by price
+    </select>
+
+    <select id="findByCityDistrictPriceDesc" resultType="House">
+        select * from house
+        <where>
+            city = #{city}
+            and district = #{district}
+            <if test="minArea != null">
+                and area &gt;= #{minArea}
+            </if>
+            <if test="maxArea != null">
+                and area &lt;= #{maxArea}
+            </if>
+            <if test="minPrice != null">
+                and price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                and price &lt;= #{maxPrice}
+            </if>
+        </where>
+        order by price desc
+    </select>
+
+    <select id="findById" parameterType="java.lang.Integer" resultType="House">
+        select * from house where id = #{id}
+    </select>
+
+    <insert id="save" parameterType="House">
+        insert into house (city, district, area, price, address, floor, lift, houseType, orientation, buildYear, url)
+        values (#{city}, #{district}, #{area}, #{price}, #{address}, #{floor}, #{lift}, #{houseType}, #{orientation}, #{buildYear}, #{url})
+    </insert>
+
+    <update id="update" parameterType="House">
+        update house
+        set
+            city = #{city},
+            district = #{district},
+            area = #{area},
+            price = #{price},
+            address = #{address},
+            floor = #{floor},
+            lift = #{lift},
+            houseType = #{houseType},
+            orientation = #{orientation},
+            buildYear = #{buildYear},
+            url = #{url}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from house where id = #{id}
+    </delete>
+</mapper>
